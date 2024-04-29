@@ -34,7 +34,6 @@ i18next.init({
   },
 });
 
-
 function getKindnessChallengePrompt(challengeNumber, language) {
   const prompt = i18next.t(`prompts.kindnessChallenge${challengeNumber}`, { lng: language });
   const twist = i18next.t(`twists.kindnessChallenge${challengeNumber}`, { lng: language });
@@ -49,12 +48,12 @@ function setLanguage(language) {
   });
 }
 
-
 function renderPrompts() {
   const challengeNumber = 1; 
   const language = i18next.language; 
   const kindnessChallenge = getKindnessChallengePrompt(challengeNumber, language);
-  console.log(kindnessChallenge);
+  document.getElementById('prompt').innerText = kindnessChallenge;
 }
 
 setLanguage('en');
+
