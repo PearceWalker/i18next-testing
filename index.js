@@ -1,7 +1,9 @@
+// Require i18next library
 const i18next = require('i18next');
 
+// Initialize i18next
 i18next.init({
-  lng: 'en', 
+  lng: 'en', // default language
   resources: {
     en: {
       translation: {
@@ -34,26 +36,30 @@ i18next.init({
   },
 });
 
+// Function to get a kindness challenge prompt
 function getKindnessChallengePrompt(challengeNumber, language) {
   const prompt = i18next.t(`prompts.kindnessChallenge${challengeNumber}`, { lng: language });
   const twist = i18next.t(`twists.kindnessChallenge${challengeNumber}`, { lng: language });
   return `${prompt} ${twist}`;
 }
 
+// Function to set the language
 function setLanguage(language) {
   i18next.changeLanguage(language, (err, t) => {
     if (err) return console.error('Something went wrong loading language:', err);
     console.log('Language switched to', language);
+    // Re-render the prompts with the new language
     renderPrompts();
   });
 }
 
+// Function to render prompts in the current language
 function renderPrompts() {
-  const challengeNumber = 1; 
-  const language = i18next.language; 
+  const challengeNumber = 2; // You can change this to get different prompts
+  const language = i18next.language; // Get the current language
   const kindnessChallenge = getKindnessChallengePrompt(challengeNumber, language);
-  document.getElementById('prompt').innerText = kindnessChallenge;
+  console.log(kindnessChallenge);
 }
 
+// Example usage to switch language to Spanish
 setLanguage('en');
-
